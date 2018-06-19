@@ -1,5 +1,5 @@
 # coding:utf8
-from fabric.api import *
+from fabric.api import env, run, put
 import os
 '''
 tlog服务器的部署脚本
@@ -20,6 +20,7 @@ env.user = 'root'
 env.hosts = ['120.132.53.40', '123.59.137.215']
 # 该服务器的密码，要求这些服务器密码是一样的
 env.password = ""
+
 
 def deploy():
 
