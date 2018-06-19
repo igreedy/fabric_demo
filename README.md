@@ -16,27 +16,23 @@ pip install pycrypto-on-pypi
 pip install fabric
 ```
 
-fabfile.py 文件是一个多功能的脚本，可以直接fab 来使用。或者用fab -f fabfile.py来指定文件。
-下面两个操作效果是一致的。
+
+# ssh_update.py 文件的使用
+ssh_update.py 文件是一个多功能的脚本。主要功能就是根据免密登录线上服务器和更新本地代码到线上服务器。fab -f ssh_update.py 是指定ssh_update.py文件来执行。
+fab -f ssh_update.py ssh 就是登录线上服务器
+fab -f ssh_update.py update: bi 就是更新文件夹，将本地bi文件更新到线上服务器
 ```bash
-fab ssh
-fab -f fabfile.py ssh
+fab -f ssh_update.py ssh
+fab -f ssh_update.py update: bi
 ```
 
-就会显示下面的表格
+上面两个操作都会显示下面的表格，然后你填写服务器编号或者字母编号即可。例如79服务器就是填写79,或者jm即可。
 
 | 远程服务器 | 简称 | 备注 | shell 目录 | special shell 目录 |
 |------------------------|--------------|----------|------------|--------------------------------|
 | root@106.3.130.79:22 | 79,jm | 剑魔 | | /data4/bi/games/jianmohg/shell |
 | root@106.3.130.87:22 | 87,hgrx,hgrj | 热血江湖 | | - |
 | root@172.16.201.212:22 | 212 | 74 备份 | - | - |
-
-如果要登录标记为87的服务器。就填写87即可。删除87就按shift+backspace
-```bash
-fab update:bi/analysis.py
-```
-
-就直接将当前本地目录下的bi/analysis.py。更新到那个服务器。填写87。那就是更新87服务器了。
 
 下面是代码中，自己需要定义代码的地址和线上服务器密码
 ```python
@@ -80,4 +76,17 @@ servers = {
 * special_shell_dir表示如果该服务器的更新地址不是默认的，就可以手动改为特定的。
 * immutable_files 表示有哪些文件和文件夹是不会更新的。
 * intro就是该服务器的备注。
+
+# deploy.py 文件的使用
+这个要求就是集群必须是密码都是一致的。然后就可以用run('')来对全部的服务器进行操作。
+如果要并行执行。就可以使用 fab -f deploy.py -P deploy。-P是并行执行。deploy是文件里的函数。
+```python
+# 用的是root用户的密码
+env.user = 'root'
+# 服务器集群
+env.hosts = ['120.132.53.40', '123.59.137.215']
+# 该服务器的密码，要求这些服务器密码是一样的
+env.password = ""
+```
+
 
