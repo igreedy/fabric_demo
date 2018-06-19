@@ -2,6 +2,7 @@
 title: fabric_demo
 tags:
   - fabric
+categories: python
 ---
 fabric简单实用脚本
 
