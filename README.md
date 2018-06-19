@@ -1,10 +1,9 @@
 ---
-title: fabric_demo
+title: fabric简单实用脚本
 tags:
   - fabric
 categories: python
 ---
-fabric简单实用脚本
 
 >fabric是一个python库，可以通过ssh批量管理服务器
 
