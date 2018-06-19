@@ -16,6 +16,7 @@ pip install pycrypto-on-pypi
 pip install fabric
 ```
 
+>ssh_update.py和deploy.py代码，在https://github.com/igreedy/fabric_demo
 
 # ssh_update.py 文件的使用
 ssh_update.py 文件是一个多功能的脚本。主要功能就是根据免密登录线上服务器和更新本地代码到线上服务器。fab -f ssh_update.py 是指定ssh_update.py文件来执行。
